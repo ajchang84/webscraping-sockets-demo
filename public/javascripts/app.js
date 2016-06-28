@@ -15,14 +15,22 @@ $(function() {
       data: {message: message},
       crossDomain: true
     }).then(function(data) {
-      console.log(data)
-    })
+      socket.emit('message', data);
+    });
 
-    socket.emit('message', message);
   });
 
-  socket.on('message', function(newMessage) {
-    $messages.append($('<li></li>', {text: newMessage, class: 'list-group-item'}));
+  socket.on('message', function(data) {
+    var $newLi = $('<li></li>', {
+      text: data.message, 
+      class: 'list-group-item'
+    });
+    var $displayedData = $('<span></span>', {
+      text: '(' + data.polarity.toFixed(3) + ', ' + data.subjectivity.toFixed(3) + ')',
+      class: 'badge'
+    });
+    $newLi.append($displayedData);
+    $messages.append($newLi);
   });
 
 });

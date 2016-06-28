@@ -10,8 +10,8 @@ app.set('view engine', 'pug');
 
 io.on('connection', function(socket) {
 
-  socket.on('message', function(newMessage) {
-    io.emit('message', newMessage);
+  socket.on('message', function(data) {
+    io.emit('message', data);
   });
 
 });

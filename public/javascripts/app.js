@@ -11,8 +11,11 @@ $(function() {
     $msgInput.val('');
 
     $.post({
-      url: 'localhost:3001/api/messages',
-      data: {message: message}
+      url: 'http://localhost:3001/api/messages',
+      data: {message: message},
+      crossDomain: true
+    }).then(function(data) {
+      console.log(data)
     })
 
     socket.emit('message', message);

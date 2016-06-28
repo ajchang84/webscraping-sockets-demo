@@ -1,9 +1,16 @@
-doctype html
-html(lang="en")
-  head
-    title= Boom
-  body
-    h1 Jade - node template engine
-    script(src="https://code.jquery.com/jquery-2.2.0.min.js")
-    script(src="/socket.io/socket.io.js")
-    script(src="/javascripts/app.js")
+extends ./layout.pug
+
+block content
+  .page-header
+    h2 Real-Time Text Sentiment Analysis
+    small Type some text or paste a URL into the input field.
+  .row
+    .col-sm-6
+      ul#messages.list-group
+      #new-message.panel.panel-info
+        form(action="/messages" method="POST")
+          .input-group
+            input.form-control(type="text" id="message-input" placeholder="Enter your message or URL here.")
+            span.input-group-btn
+              input.btn.btn-info(type="submit" value="Submit")
+    .col-sm-6

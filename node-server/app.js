@@ -9,7 +9,11 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set('view engine', 'pug');
 
 io.on('connection', function(socket) {
-  console.log('connected!');
+
+  socket.on('message', function(newMessage) {
+    io.emit('message', newMessage);
+  });
+
 });
 
 app.get('/', function(req, res) {

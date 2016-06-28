@@ -1,0 +1,9 @@
+#new-message {
+  position: fixed;
+  bottom: 0;
+  width: 50%;
+}
+
+.col-sm-6 {
+  position: relative;
+}

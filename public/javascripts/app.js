@@ -7,8 +7,15 @@ $(function() {
 
   $msgForm.on('submit', function(e) {
     e.preventDefault();
-    socket.emit('message', $msgInput.val());
+    var message = $msgInput.val();
     $msgInput.val('');
+
+    $.post({
+      url: 'localhost:3001/api/messages',
+      data: {message: message}
+    })
+
+    socket.emit('message', message);
   });
 
   socket.on('message', function(newMessage) {
